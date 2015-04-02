@@ -7,5 +7,6 @@
     <string name="title_activity_cat_details">Cat details</string>
     <string name="cat_name">Luna</string>
     <string name="hint_cat_name">Name of your cat</string>
+    <string name="hint_cat_birthdate">Birthdate of your cat</string>
     <string name="button_new_cat_save">Save</string>
 </resources>

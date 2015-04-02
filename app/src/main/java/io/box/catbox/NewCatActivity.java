@@ -1,17 +1,57 @@
 package io.box.catbox;
 
+import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
+import android.widget.EditText;
+import android.widget.Spinner;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
 
 
-public class NewCatActivity extends ActionBarActivity {
+public class NewCatActivity extends ActionBarActivity implements View.OnClickListener {
+
+    private EditText newCatBirthdate;
+    private DatePickerDialog newCatBirthdateDatePickerDialog;
+    private SimpleDateFormat dateFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_cat);
+
+        dateFormat = new SimpleDateFormat("dd.MM.yyyy", Locale.GERMANY);
+
+        newCatBirthdate = (EditText) findViewById(R.id.new_cat_birthdate);
+        newCatBirthdate.setInputType(InputType.TYPE_NULL);
+        newCatBirthdate.setOnClickListener(this);
+
+        Calendar newCalendar = Calendar.getInstance();
+        newCatBirthdateDatePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                Calendar newDate = Calendar.getInstance();
+                newDate.set(year, monthOfYear, dayOfMonth);
+                newCatBirthdate.setText(dateFormat.format(newDate.getTime()));
+            }
+        }, newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
+
+        Spinner newCatRace = (Spinner) findViewById(R.id.new_cat_race);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.cat_races, android.R.layout.simple_spinner_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        newCatRace.setAdapter(adapter);
     }
 
 
@@ -35,5 +75,12 @@ public class NewCatActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == newCatBirthdate) {
+            newCatBirthdateDatePickerDialog.show();
+        }
     }
 }

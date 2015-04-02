@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="cat_races">
+        <item>Bitte Rasse wählen</item>
+        <item>Britisch Kurzhaar</item>
+        <item>Burma</item>
+        <item>Siam</item>
+        <item>Bengal</item>
+        <item>Asian</item>
+    </string-array>
+</resources>

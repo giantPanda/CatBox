@@ -11,6 +11,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
+    <EditText
+        android:id="@+id/new_cat_birthdate"
+        android:hint="@string/hint_cat_birthdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:id="@+id/new_cat_race"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
     <Button android:id="@+id/new_cat_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
