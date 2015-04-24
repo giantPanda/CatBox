@@ -5,6 +5,13 @@
     android:orientation="vertical"
     tools:context="io.box.catbox.NewCatActivity">
 
+    <ImageView
+        android:id="@+id/new_cat_image"
+        android:layout_width="200"
+        android:layout_height="200"
+        android:clickable="true"
+        android:src="@drawable/additem"/>
+
     <EditText
         android:id="@+id/new_cat_name"
         android:hint="@string/hint_cat_name"
