@@ -51,7 +51,7 @@ public class NewCatActivity extends ActionBarActivity implements View.OnClickLis
         newCatImage = (ImageView) findViewById(R.id.new_cat_image);
         newCatImage.setOnClickListener(this);
 
-        Intent imageCaptureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        imageCaptureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
         catImageUri = getOutputMediaFileUri(MEDIA_TYPE_IMAGE);
         imageCaptureIntent.putExtra(MediaStore.EXTRA_OUTPUT, catImageUri);
@@ -117,6 +117,7 @@ public class NewCatActivity extends ActionBarActivity implements View.OnClickLis
 
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), "CatBox");
+
         // This location works best if you want the created images to be shared
         // between applications and persist after your app has been uninstalled.
 

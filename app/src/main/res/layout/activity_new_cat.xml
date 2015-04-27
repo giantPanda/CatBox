@@ -7,8 +7,9 @@
 
     <ImageView
         android:id="@+id/new_cat_image"
-        android:layout_width="200"
-        android:layout_height="200"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
         android:clickable="true"
         android:src="@drawable/additem"/>
 
