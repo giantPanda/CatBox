@@ -1,7 +1,9 @@
 package io.box.catbox;
 
+import android.graphics.Rect;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.GridView;
@@ -9,17 +11,37 @@ import android.widget.GridView;
 
 public class CatListActivity extends ActionBarActivity {
 
-    public final static String EXTRA_CAT_NAME = "io.box.catbox.CAT_NAME";
+    public final static String EXTRA_CAT_ID = "io.box.catbox.CAT_ID";
+    private GridView gridView;
+    private ImageAdapter imageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cat_list);
 
-        GridView gridview = (GridView) findViewById(R.id.gridview);
-        gridview.setAdapter(new ImageAdapter(this));
+        imageAdapter = new ImageAdapter(this);
+
+        gridView = (GridView) findViewById(R.id.gridview);
+        gridView.setAdapter(imageAdapter);
     }
 
+    protected void onResume () {
+        Log.d("activity", "activity resumed");
+        super.onResume();
+    }
+
+    protected void onRestart () {
+        Log.d("activity", "activity restarted");
+        super.onRestart();
+        imageAdapter = new ImageAdapter(this);
+        gridView.setAdapter(imageAdapter);
+    }
+
+    protected void onPause () {
+        Log.d("activity", "activity paused");
+        super.onPause();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

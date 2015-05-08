@@ -5,8 +5,39 @@
     android:orientation="vertical"
     tools:context="io.box.catbox.CatDetailsActivity">
 
-    <TextView android:text="@string/cat_name"
+    <ImageView
+        android:id="@+id/details_cat_image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:clickable="true"
+        android:src="@drawable/additem"/>
+
+    <EditText
+        android:id="@+id/details_cat_name"
+        android:hint="@string/hint_cat_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/details_cat_birthday"
+        android:hint="@string/hint_cat_birthday"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Spinner
+        android:id="@+id/details_cat_race"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button android:id="@+id/details_cat_save"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_save" />
+
+    <Button android:id="@+id/details_cat_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_cancel" />
 
 </LinearLayout>

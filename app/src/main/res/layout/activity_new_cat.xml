@@ -20,8 +20,8 @@
         android:layout_height="wrap_content" />
 
     <EditText
-        android:id="@+id/new_cat_birthdate"
-        android:hint="@string/hint_cat_birthdate"
+        android:id="@+id/new_cat_birthday"
+        android:hint="@string/hint_cat_birthday"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -33,6 +33,11 @@
     <Button android:id="@+id/new_cat_save"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/button_new_cat_save" />
+        android:text="@string/button_save" />
+
+    <Button android:id="@+id/new_cat_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_cancel" />
 
 </LinearLayout>

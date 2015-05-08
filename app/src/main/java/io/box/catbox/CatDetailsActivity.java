@@ -5,24 +5,66 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.sql.SQLException;
+import java.util.List;
 
-public class CatDetailsActivity extends ActionBarActivity {
+
+public class CatDetailsActivity extends ActionBarActivity implements View.OnClickListener {
+
+    private Button cancelButton;
+    private EditText catName;
+    private EditText catBirthday;
+    private ImageView catImage;
+    private Spinner catRace;
+    private CatDataSource datasource;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_cat_details);
+
+        try {
+            datasource = new CatDataSource(this);
+            datasource.open();
+        } catch (SQLException ex) {
+
+        }
 
         Intent intent = getIntent();
 
-        String catName = intent.getStringExtra(CatListActivity.EXTRA_CAT_NAME);
+        long catId = intent.getLongExtra(CatListActivity.EXTRA_CAT_ID, -1);
 
-        TextView textView = new TextView(this);
-        textView.setTextSize(40);
-        textView.setText(catName);
+        Cat cat = datasource.getById(catId);
 
-        setContentView(textView);
+        catImage = (ImageView) findViewById(R.id.details_cat_image);
+        catImage.setImageResource(R.drawable.additem);
+
+        catName = (EditText) findViewById(R.id.details_cat_name);
+        catName.setText(cat.getName());
+
+        catBirthday = (EditText) findViewById(R.id.details_cat_birthday);
+        catBirthday.setText(cat.getBirthday());
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.cat_races, android.R.layout.simple_spinner_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        catRace = (Spinner) findViewById(R.id.details_cat_race);
+        catRace.setAdapter(adapter);
+
+        int spinnerPostion = adapter.getPosition(cat.getRace());
+        catRace.setSelection(spinnerPostion);
+
+        cancelButton = (Button) findViewById(R.id.details_cat_cancel);
+        cancelButton.setOnClickListener(this);
     }
 
 
@@ -46,5 +88,12 @@ public class CatDetailsActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == cancelButton) {
+            finish();
+        }
     }
 }
