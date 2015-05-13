@@ -1,6 +1,7 @@
 package io.box.catbox;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -45,7 +46,14 @@ public class CatDetailsActivity extends ActionBarActivity implements View.OnClic
         Cat cat = datasource.getById(catId);
 
         catImage = (ImageView) findViewById(R.id.details_cat_image);
-        catImage.setImageResource(R.drawable.additem);
+
+        String catImageUrl = cat.getPicture();
+
+        if (catImageUrl.length() > 0) {
+            catImage.setImageURI(Uri.parse(catImageUrl));
+        } else {
+            catImage.setImageResource(R.drawable.cat);
+        }
 
         catName = (EditText) findViewById(R.id.details_cat_name);
         catName.setText(cat.getName());

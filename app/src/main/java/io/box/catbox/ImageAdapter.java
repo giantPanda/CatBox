@@ -2,6 +2,7 @@ package io.box.catbox;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -79,8 +80,14 @@ public class ImageAdapter extends BaseAdapter {
 
             final Cat cat = cats.get(position);
             final String catName = cat.getName();
+            String catImageUrl = cat.getPicture();
 
-            imageView.setImageResource(R.drawable.cat);
+            if (catImageUrl.length() > 0) {
+                imageView.setImageURI(Uri.parse(catImageUrl));
+            } else {
+                imageView.setImageResource(R.drawable.cat);
+            }
+
             linearLayout.addView(imageView);
 
             catNameTextView.setText(catName);
